@@ -5,7 +5,7 @@ import re
 import html
 
 ###### DEBUT DU SCRAPPING
-lien_scrapping = "https://running.life/calendrier-course-a-pied/france/occitanie/"+str(commune.lower())
+lien_scrapping = "https://running.life/calendrier-course-a-pied/france/"+str(reg.lower())+"/"+str(commune.lower())
 
 # Requête HTTP pour récupérer le contenu
 reponse = requests.get(lien_scrapping)
