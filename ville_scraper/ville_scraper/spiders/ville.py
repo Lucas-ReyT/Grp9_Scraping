@@ -28,6 +28,8 @@ class JobijobaSpider(scrapy.Spider):
             lien = offre.css("a.offer-link::attr(href)").get()
             salaire_raw = offre.css("div.offer-features div.feature::text").getall()
             salaire_texte = " ".join(salaire_raw).strip()
+            print(f'///////////////////\n SALAIRE : {salaire_raw}\n///////////////////////////////////////')
+
 
             
             if self.what and (not titre or self.what.lower() not in titre.lower()):
@@ -38,7 +40,7 @@ class JobijobaSpider(scrapy.Spider):
 
             
             if salaire_valide is None or (self.salaire_min and salaire_valide < self.salaire_min):
-                continue
+                pass
 
             idx += 1
 
