@@ -88,5 +88,11 @@ ROBOTSTXT_OBEY = False
 #HTTPCACHE_DIR = "httpcache"
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = "scrapy.extensions.httpcache.FilesystemCacheStorage"
-
+print(f'///////////////////////////////////////////////\n//////////////////////////////////////////////////')
 # Set settings whose default value is deprecated to a future-proof value
+
+ITEM_PIPELINES = {
+    'ville_scraper.pipelines.JobiJobaPipeline': 200,       # Nettoyer et traiter
+    'ville_scraper.pipelines.StatsPipeline': 300,          # Collecter les stats
+    'ville_scraper.pipelines.JsonWriterPipeline': 400,     # Sauvegarder en dernier
+}
