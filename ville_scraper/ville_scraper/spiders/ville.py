@@ -29,14 +29,14 @@ class JobijobaSpider(scrapy.Spider):
             salaire_raw = offre.css("div.offer-features div.feature::text").getall()
             salaire_texte = " ".join(salaire_raw).strip()
 
-            # ❌ Filtrage par mot-clé
+            
             if self.what and (not titre or self.what.lower() not in titre.lower()):
                 continue
 
-            # 💰 Extraction du montant annuel
+            
             salaire_valide = self.extract_salaire(salaire_texte)
 
-            # ❌ Skip si pas de salaire ou trop bas
+            
             if salaire_valide is None or (self.salaire_min and salaire_valide < self.salaire_min):
                 continue
 
@@ -53,10 +53,10 @@ class JobijobaSpider(scrapy.Spider):
             }
 
     def extract_salaire(self, texte):
-        # Nettoyage des espaces insécables & caractères non numériques
+        
         texte = texte.replace("\u202f", " ").replace("\xa0", " ")
 
-        # Format : De 45 000 € à 65 000 € par an
+        
         match = re.search(r"De\s*(\d[\d\s]*)\s*€", texte)
         if match:
             montant = match.group(1).replace(" ", "").replace(".", "")
@@ -65,7 +65,7 @@ class JobijobaSpider(scrapy.Spider):
             except ValueError:
                 return None
 
-        # Format : 50 000 € par an
+        
         match2 = re.search(r"(\d[\d\s]*)\s*€", texte)
         if match2:
             montant = match2.group(1).replace(" ", "").replace(".", "")
