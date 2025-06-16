@@ -52,6 +52,7 @@ while True:
     code_commune = ville_choisie['COM']
     lat_com = ville_choisie['latitude_mairie']
     long_com = ville_choisie['longitude_mairie']
+    reg = ville_choisie['reg_nom']
     
     
     
